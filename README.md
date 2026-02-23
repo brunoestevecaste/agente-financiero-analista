@@ -38,6 +38,29 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Configuración segura
+
+1. Copia el archivo de ejemplo de entorno:
+
+```bash
+cp .env.example .env
+```
+
+2. Añade tus claves en `.env` (no se sube al repo):
+
+- `GOOGLE_API_KEY`
+- `TAVILY_API_KEY`
+
+3. Si usas Streamlit secrets, guarda credenciales en `.streamlit/secrets.toml` (también ignorado por Git).
+
+4. Activa validaciones locales antes de cada commit:
+
+```bash
+pip install pre-commit
+pre-commit install
+pre-commit run --all-files
+```
+
 ## Ejecución
 
 ```bash
@@ -47,6 +70,17 @@ streamlit run app.py
 En la barra lateral introduce:
 - `GOOGLE_API_KEY`
 - `TAVILY_API_KEY`
+
+## Seguridad del repositorio
+
+Este repositorio incluye:
+- `.gitignore` endurecido para evitar subir secretos y entornos locales.
+- `SECURITY.md` para reporte responsable de vulnerabilidades.
+- `Dependabot` para actualización de dependencias.
+- Workflows de GitHub Actions para:
+  - `CodeQL` (análisis estático)
+  - `Bandit` + `pip-audit` (seguridad Python/dependencias)
+  - `Gitleaks` (detección de secretos)
 
 ## Ejemplos de uso
 
